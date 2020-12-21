@@ -1,10 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class GameManager : MonoBehaviour
 {
     public int Dir;
+
+    [HideInInspector]
+    public int CoinCount = 0;
+
+    
+    public TextMeshProUGUI DisplayCounter;
+
+    public int LevelTotal = 0;
+
     public Quaternion GravityDir;
     public Vector3 defaultVel;
     public Vector3 realVel;

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class floating : MonoBehaviour
 {
     public AnimationCurve myCurve;
@@ -27,12 +27,22 @@ public class floating : MonoBehaviour
     }
     void OnCollisionEnter(Collision collision)
     {
+        if (GM.DisplayCounter != null)
+        {
+            GM.CoinCount += 1;
+            GM.DisplayCounter.text = "Collected: " + GM.CoinCount.ToString() + "\nRequired: " + GM.LevelTotal.ToString();
+        }
 
         GM.AS.Play();
         Destroy(gameObject);
     }
     private void OnTriggerEnter(Collider other)
     {
+        if (GM.DisplayCounter != null)
+        {
+            GM.CoinCount += 1;
+            GM.DisplayCounter.text = "Collected: " + GM.CoinCount.ToString() + "\nRequired: " + GM.LevelTotal.ToString();
+        }
         GM.AS.Play();
         Destroy(gameObject);
     }
