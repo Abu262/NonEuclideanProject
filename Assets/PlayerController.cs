@@ -10,6 +10,9 @@ public class PlayerController : PortalTraveller
     bool isWallRunning;
     public float maxWallRunCameraTilt, wallRunCameraTilt;
 
+    // TODO: Make a wall running time limit
+    // TODO: When time is up, make player run straight down
+
     private void WallRunInput() 
     {
         //Wallrun
@@ -267,8 +270,9 @@ public class PlayerController : PortalTraveller
         if (grounded && crouching) multiplierV = 0f;
 
         // Apply forces to move player
-        rb.AddForce(orientation.transform.forward * y * moveSpeed * Time.deltaTime * multiplier * multiplierV);
-        rb.AddForce(orientation.transform.right * x * moveSpeed * Time.deltaTime * multiplier);
+        int modifier = 15; // This is added to increase the start up velocity for the player
+        rb.AddForce(orientation.transform.forward * y * moveSpeed * Time.deltaTime * modifier * multiplier * multiplierV);
+        rb.AddForce(orientation.transform.right * x * moveSpeed * Time.deltaTime * modifier * multiplier);
     }
 
     private void Jump() 
@@ -298,8 +302,8 @@ public class PlayerController : PortalTraveller
 
             //Add jump forces
             rb.AddForce(orientation.forward * jumpForce * 1f);
-            rb.AddForce(Vector2.up * jumpForce * 1.5f);
-            rb.AddForce(normalVector * jumpForce * 0.5f);
+            rb.AddForce(Vector2.up * jumpForce * 0.5f);
+            rb.AddForce(normalVector * jumpForce * 0.2f);
 
             //Reset Velocity
             rb.velocity = Vector3.zero;
