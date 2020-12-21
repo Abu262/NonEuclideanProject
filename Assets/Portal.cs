@@ -23,6 +23,9 @@ public class Portal : MonoBehaviour
     List<PortalTraveller> trackedTravellers;
     MeshFilter screenMeshFilter;
 
+
+    public bool active = false;
+    bool parent;
     void Awake()
     {
         GM = FindObjectOfType<GameManager>();
@@ -36,6 +39,10 @@ public class Portal : MonoBehaviour
 
     void LateUpdate()
     {
+        if (active == true && linkedPortal.active == true)
+        {
+            Debug.Log("PENIS");
+        }
         HandleTravellers();
     }
 
@@ -54,7 +61,15 @@ public class Portal : MonoBehaviour
             // Teleport the traveller if it has crossed from one side of the portal to the other
             if (portalSide != portalSideOld)
             {
-                GM.Dir = linkedPortal.directionIndex;
+                traveller.GetComponent<Rigidbody>().velocity = linkedPortal.transform.rotation
+                    * (Quaternion.Inverse(transform.rotation)
+                    * traveller.GetComponent<Rigidbody>().velocity);
+
+
+
+                Physics.gravity = linkedPortal.transform.rotation * GM.initialGrav;
+                //GM.Dir = linkedPortal.directionIndex;
+                //Physics.gravity = transform.rotation * Physics.gravity;
                 var positionOld = travellerT.position;
                 var rotOld = travellerT.rotation;
                 traveller.Teleport(transform, linkedPortal.transform, m.GetColumn(3), m.rotation);
@@ -67,6 +82,7 @@ public class Portal : MonoBehaviour
             }
             else
             {
+                //Physics.gravity = linkedPortal.transform.rotation * Physics.gravity;
                 traveller.graphicsClone.transform.SetPositionAndRotation(m.GetColumn(3), m.rotation);
                 //UpdateSliceParams (traveller);
                 traveller.previousOffsetFromPortal = offsetFromPortal;
@@ -160,11 +176,13 @@ public class Portal : MonoBehaviour
             {
                 // Addresses issue 1
                 traveller.SetSliceOffsetDst(hideDst, false);
+                
             }
             else
             {
                 // Addresses issue 2
                 traveller.SetSliceOffsetDst(showDst, false);
+                
             }
 
             // Ensure clone is properly sliced, in case it's visible through this portal:
@@ -325,19 +343,41 @@ public class Portal : MonoBehaviour
     {
         if (!trackedTravellers.Contains(traveller))
         {
+            
+
+
             traveller.EnterPortalThreshold();
             traveller.previousOffsetFromPortal = traveller.transform.position - transform.position;
             trackedTravellers.Add(traveller);
         }
+
+
     }
 
     void OnTriggerEnter(Collider other)
     {
+
         var traveller = other.GetComponent<PortalTraveller>();
         if (traveller)
         {
-            
+
+
             OnTravellerEnterPortal(traveller);
+        }
+
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        var traveller = other.GetComponent<PortalTraveller>();
+        if (traveller)
+        {
+
+            if (linkedPortal.active == false)
+            {
+                
+                active = true;
+            }
         }
     }
 
@@ -346,9 +386,18 @@ public class Portal : MonoBehaviour
         var traveller = other.GetComponent<PortalTraveller>();
         if (traveller && trackedTravellers.Contains(traveller))
         {
+            active = false;          
             traveller.ExitPortalThreshold();
             trackedTravellers.Remove(traveller);
+            
         }
+        
+
+       
+
+       // active = false;
+
+
     }
 
     /*

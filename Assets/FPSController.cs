@@ -81,6 +81,7 @@ public class FPSController : PortalTraveller {
         
         if (GM.Dir == -2)
         {
+            Debug.Log("PENIS");
             controller.center = new Vector3(0, -0.5f, 0);
             //            transform.Rotate(0, 0, 0);
             velocity = new Vector3(velocity.x, verticalVelocity, velocity.z);

@@ -803,6 +803,7 @@ MonoBehaviour:
   directionIndex: -2
   nearClipOffset: 0.05
   nearClipLimit: 0.2
+  active: 0
 --- !u!65 &26961954
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11879,7 +11880,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 512222084}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e367f226cc448391a7757f459443204, type: 3}
+  m_Script: {fileID: 11500000, guid: c4eaf0316af175141b2012d7caa30e8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1136960004}
@@ -12864,7 +12865,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 601593806}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87e0bdd5c5be76f9a88451906ca3e01e, type: 3}
+  m_Script: {fileID: 11500000, guid: ffda441fe2232564caf89a0c8e7a10d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   graphicsObject: {fileID: 2078722273}
@@ -12879,14 +12880,14 @@ MonoBehaviour:
   playerCam: {fileID: 512222085}
   orientation: {fileID: 1756455276}
   rb: {fileID: 0}
-  moveSpeed: 600
-  maxSpeed: 20
+  moveSpeed: 210
+  maxSpeed: 7
   grounded: 0
   whatIsGround:
     serializedVersion: 2
     m_Bits: 1
-  startMaxSpeed: 10
-  counterMovement: 0.55
+  startMaxSpeed: 7
+  counterMovement: 0.75
   maxSlopeAngle: 35
   slideForce: 5
   slideCounterMovement: 0.125
@@ -16823,6 +16824,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Dir: -2
+  GravityDir: {x: 0, y: 0, z: 0, w: 0}
+  defaultVel: {x: 0, y: 0, z: 0}
+  realVel: {x: 0, y: 0, z: 0}
+  initialGrav: {x: 0, y: 0, z: 0}
   AS: {fileID: 1002877757}
   BGM: {fileID: 525266920}
 --- !u!4 &1002877756
@@ -18667,6 +18672,7 @@ MonoBehaviour:
   directionIndex: -2
   nearClipOffset: 0.05
   nearClipLimit: 0.2
+  active: 0
 --- !u!65 &1260019584
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19226,6 +19232,7 @@ MonoBehaviour:
   directionIndex: 2
   nearClipOffset: 0.05
   nearClipLimit: 0.2
+  active: 0
 --- !u!4 &1325237134
 Transform:
   m_ObjectHideFlags: 0
@@ -19719,6 +19726,7 @@ MonoBehaviour:
   directionIndex: 2
   nearClipOffset: 0.05
   nearClipLimit: 0.2
+  active: 0
 --- !u!65 &1366517479
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21489,6 +21497,7 @@ MonoBehaviour:
   directionIndex: -2
   nearClipOffset: 0.05
   nearClipLimit: 0.2
+  active: 0
 --- !u!4 &1591217949
 Transform:
   m_ObjectHideFlags: 0
@@ -21820,6 +21829,7 @@ MonoBehaviour:
   directionIndex: -2
   nearClipOffset: 0.05
   nearClipLimit: 0.2
+  active: 0
 --- !u!54 &1658524311
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -37616,16 +37626,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 609571228}
     - target: {fileID: 9011193574287039969, guid: 17f95dbee914f8a4591801374916ac66, type: 3}
+      propertyPath: maxWallSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9011193574287039969, guid: 17f95dbee914f8a4591801374916ac66, type: 3}
       propertyPath: wallRunCameraTilt
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 9011193574287039969, guid: 17f95dbee914f8a4591801374916ac66, type: 3}
       propertyPath: whatIsWall.m_Bits
       value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 9011193574287039969, guid: 17f95dbee914f8a4591801374916ac66, type: 3}
-      propertyPath: maxWallSpeed
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 17f95dbee914f8a4591801374916ac66, type: 3}
