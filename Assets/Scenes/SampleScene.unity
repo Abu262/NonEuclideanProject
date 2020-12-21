@@ -15495,7 +15495,7 @@ MonoBehaviour:
   playerCam: {fileID: 371520600}
   orientation: {fileID: 598866744}
   rb: {fileID: 771026182}
-  moveSpeed: 200
+  moveSpeed: 210
   maxSpeed: 7
   grounded: 0
   whatIsGround:
