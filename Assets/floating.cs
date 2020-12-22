@@ -6,10 +6,12 @@ public class floating : MonoBehaviour
 {
     public AnimationCurve myCurve;
     public GameManager GM;
+    public SceneHandler SM;
     // Start is called before the first frame update
     void Start()
     {
         GM = FindObjectOfType<GameManager>();
+        SM = FindObjectOfType<SceneHandler>();
     }
 
     // Update is called once per frame
@@ -27,10 +29,10 @@ public class floating : MonoBehaviour
     }
     void OnCollisionEnter(Collision collision)
     {
-        if (GM.DisplayCounter != null)
+        if (SM.DisplayCounter != null)
         {
-            GM.CoinCount += 1;
-            GM.DisplayCounter.text = "Collected: " + GM.CoinCount.ToString() + "\nRequired: " + GM.LevelTotal.ToString();
+            SM.CoinCount += 1;
+            SM.DisplayCounter.text = "Collected: " + SM.CoinCount.ToString() + "\nRequired: " + SM.LevelTotal.ToString();
         }
 
         GM.AS.Play();
@@ -38,10 +40,10 @@ public class floating : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (GM.DisplayCounter != null)
+        if (SM.DisplayCounter != null)
         {
-            GM.CoinCount += 1;
-            GM.DisplayCounter.text = "Collected: " + GM.CoinCount.ToString() + "\nRequired: " + GM.LevelTotal.ToString();
+            SM.CoinCount += 1;
+            SM.DisplayCounter.text = "Collected: " + SM.CoinCount.ToString() + "\nRequired: " + SM.LevelTotal.ToString();
         }
         GM.AS.Play();
         Destroy(gameObject);
