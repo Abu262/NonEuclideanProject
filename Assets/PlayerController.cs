@@ -282,7 +282,8 @@ public class PlayerController : PortalTraveller
             readyToJump = false;
 
             // Add jump forces
-            rb.AddForce(Vector2.up * jumpForce * 1.5f);
+            //rb.AddForce(Vector2.up * jumpForce * 1.5f);
+            rb.AddForce(transform.up * jumpForce * 1.5f);
             rb.AddForce(normalVector * jumpForce * 0.5f);
 
             // If jumping while falling, reset y velocity.
@@ -302,7 +303,8 @@ public class PlayerController : PortalTraveller
 
             //Add jump forces
             rb.AddForce(orientation.forward * jumpForce * 1f);
-            rb.AddForce(Vector2.up * jumpForce * 0.5f);
+            //rb.AddForce(Vector2.up * jumpForce * 0.5f);
+            rb.AddForce(transform.up * jumpForce * 0.5f);
             rb.AddForce(normalVector * jumpForce * 0.2f);
 
             //Reset Velocity
@@ -319,7 +321,8 @@ public class PlayerController : PortalTraveller
             // normal jump
             if (isWallLeft && !Input.GetKey(KeyCode.D) || isWallRight && !Input.GetKey(KeyCode.A)) 
             {
-                rb.AddForce(Vector2.up * jumpForce * 1.5f);
+                //rb.AddForce(Vector2.up * jumpForce * 1.5f);
+                rb.AddForce(transform.up * jumpForce * 1.5f);
                 rb.AddForce(normalVector * jumpForce * 0.5f);
             }
 
@@ -420,7 +423,8 @@ public class PlayerController : PortalTraveller
 
     private bool IsFloor(Vector3 v) 
     {
-        float angle = Vector3.Angle(Vector3.up, v);
+        //float angle = Vector3.Angle(Vector2.up, v);
+        float angle = Vector3.Angle(transform.up, v);
         return angle < maxSlopeAngle;
     }
 
