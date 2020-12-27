@@ -61,13 +61,13 @@ public class Portal : MonoBehaviour
             // Teleport the traveller if it has crossed from one side of the portal to the other
             if (portalSide != portalSideOld)
             {
-                traveller.GetComponent<Rigidbody>().velocity = linkedPortal.transform.rotation
-                    * (Quaternion.Inverse(transform.rotation)
-                    * traveller.GetComponent<Rigidbody>().velocity);
+                //traveller.GetComponent<Rigidbody>().velocity = linkedPortal.transform.rotation
+                //    * (Quaternion.Inverse(transform.rotation)
+                //    * traveller.GetComponent<Rigidbody>().velocity);
 
 
 
-                Physics.gravity = linkedPortal.transform.rotation * GM.initialGrav;
+                //Physics.gravity = linkedPortal.transform.rotation * GM.initialGrav;
                 //GM.Dir = linkedPortal.directionIndex;
                 //Physics.gravity = transform.rotation * Physics.gravity;
                 var positionOld = travellerT.position;
@@ -75,6 +75,12 @@ public class Portal : MonoBehaviour
                 traveller.Teleport(transform, linkedPortal.transform, m.GetColumn(3), m.rotation);
                 traveller.graphicsClone.transform.SetPositionAndRotation(positionOld, rotOld);
                 // Can't rely on OnTriggerEnter/Exit to be called next frame since it depends on when FixedUpdate runs
+                Physics.gravity = travellerT.rotation * GM.initialGrav;
+                traveller.GetComponent<Rigidbody>().velocity = travellerT.rotation
+                    * (Quaternion.Inverse(rotOld)
+                    * traveller.GetComponent<Rigidbody>().velocity);
+
+
                 linkedPortal.OnTravellerEnterPortal(traveller);
                 trackedTravellers.RemoveAt(i);
                 i--;
