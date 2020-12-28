@@ -9,12 +9,12 @@ public class Goal : MonoBehaviour
     public AnimationCurve myCurve;
     public GameManager GM;
     public SceneHandler SM;
-
+    public int sceneIndex;
     float initialPos;
     // Start is called before the first frame update
     void Start()
     {
-        initialPos = transform.position.y;
+        initialPos = transform.localPosition.y;
         GM = FindObjectOfType<GameManager>();
         SM = FindObjectOfType<SceneHandler>();
     }
@@ -25,7 +25,7 @@ public class Goal : MonoBehaviour
         if (SM.CoinCount >= SM.LevelTotal)
         {
             transform.Rotate(Vector3.up * Time.deltaTime * 60);
-            transform.position = new Vector3(transform.position.x, initialPos + Mathf.Cos(Time.time)/4, transform.position.z);
+            transform.localPosition = new Vector3(transform.localPosition.x, initialPos + Mathf.Cos(Time.time)/4, transform.localPosition.z);
         }
 
     }
@@ -50,7 +50,8 @@ public class Goal : MonoBehaviour
     {
         if (SM.CoinCount >= SM.LevelTotal)
         {
-            SceneManager.LoadScene(0);
+
+            SceneManager.LoadScene(sceneIndex);
         }
     }
 }

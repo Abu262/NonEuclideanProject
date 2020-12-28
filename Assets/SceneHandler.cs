@@ -24,7 +24,7 @@ public class SceneHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        DisplayCounter.text = "Collected: " + CoinCount.ToString() + "\nRequired: " + LevelTotal.ToString();
     }
 
     // Update is called once per frame
