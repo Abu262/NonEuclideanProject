@@ -46,7 +46,7 @@ public class PlayerController : PortalTraveller
     private void CheckForWall() 
     {
         isWallRight = Physics.Raycast(transform.position, orientation.right, 1f, whatIsWall);
-        isWallLeft = Physics.Raycast(transform.position, - orientation.right, 1f, whatIsWall);
+        isWallLeft = Physics.Raycast(transform.position, -orientation.right, 1f, whatIsWall);
 
         // leave wall run
         if (!isWallLeft && !isWallRight) StopWallRun();
@@ -110,7 +110,7 @@ public class PlayerController : PortalTraveller
     // float rocketTimer;
 
     [Header("Sliding")]
-    private Vector3 normalVector = Vector3.up;
+    public Vector3 normalVector = Vector3.up;
 
     // [Header("SonicSpeed")]
     // public float maxSonicSpeed;
@@ -228,7 +228,8 @@ public class PlayerController : PortalTraveller
 
         if (crouching) gravityMultiplier = crouchGravityMultiplier;
 
-        rb.AddForce(Vector3.down * Time.deltaTime * gravityMultiplier);
+        // rb.AddForce(Vector3.down * Time.deltaTime * gravityMultiplier);
+        rb.AddForce(-orientation.up * Time.deltaTime * gravityMultiplier);
 
         // Find Actual velocity relative to where player is looking
         Vector2 mag = FindVelRelativeToLook();
@@ -392,14 +393,15 @@ public class PlayerController : PortalTraveller
         }
 
         // Counter movement
-        if (Math.Abs(mag.x) > threshold && Math.Abs(x) < 0.05f || (mag.x < -threshold && x > 0) || (mag.x > threshold && x < 0))
-            rb.AddForce(moveSpeed * orientation.transform.right * Time.deltaTime * -mag.x * counterMovement);
-        if (Math.Abs(mag.y) > threshold && Math.Abs(y) < 0.05f || (mag.y < -threshold && y > 0) || (mag.y > threshold && y < 0))
-            rb.AddForce(moveSpeed * orientation.transform.forward * Time.deltaTime * -mag.y * counterMovement);
+        // if (Math.Abs(mag.x) > threshold && Math.Abs(x) < 0.05f || (mag.x < -threshold && x > 0) || (mag.x > threshold && x < 0))
+        //     rb.AddForce(moveSpeed * orientation.transform.right * Time.deltaTime * -mag.x * counterMovement);
+        // if (Math.Abs(mag.y) > threshold && Math.Abs(y) < 0.05f || (mag.y < -threshold && y > 0) || (mag.y > threshold && y < 0))
+        //     rb.AddForce(moveSpeed * orientation.transform.forward * Time.deltaTime * -mag.y * counterMovement);
 
         // Limit diagonal running/ This will also cause a full stop if sliding fast and un-crouching, so not optimal.
         if (Mathf.Sqrt((Mathf.Pow(rb.velocity.x, 2) + Mathf.Pow(rb.velocity.z, 2))) > maxSpeed) 
         {
+            // print("dia");
             float fallspeed = rb.velocity.y;
             Vector3 n = rb.velocity.normalized * maxSpeed;
             rb.velocity = new Vector3(n.x, fallspeed, n.z);
@@ -409,7 +411,8 @@ public class PlayerController : PortalTraveller
     public Vector2 FindVelRelativeToLook() 
     {
         float lookAngle = orientation.transform.eulerAngles.y;
-        float moveAngle = Mathf.Atan2(rb.velocity.x, rb.velocity.z) * Mathf.Rad2Deg;
+        // float moveAngle = Mathf.Atan2(rb.velocity.x, rb.velocity.z) * Mathf.Rad2Deg;
+        float moveAngle = Mathf.Atan2(rb.velocity.y, rb.velocity.x) * Mathf.Rad2Deg;
 
         float u = Mathf.DeltaAngle(lookAngle, moveAngle);
         float v = 90 - u;
@@ -417,7 +420,7 @@ public class PlayerController : PortalTraveller
         float magnitue = rb.velocity.magnitude;
         float yMag = magnitue * Mathf.Cos(u * Mathf.Deg2Rad);
         float xMag = magnitue * Mathf.Cos(v * Mathf.Deg2Rad);
-
+        print(new Vector2(xMag, yMag));
         return new Vector2(xMag, yMag);
     }
 
