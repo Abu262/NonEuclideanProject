@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class SimplePlayerControls : PortalTraveller
 {
     Rigidbody rb;
@@ -33,6 +33,8 @@ public class SimplePlayerControls : PortalTraveller
     private void Update()
     {
         Look();
+
+
     }
 
 
@@ -43,6 +45,17 @@ public class SimplePlayerControls : PortalTraveller
 
         // Handle Jumping
         HandleJump();
+
+        Restart();
+    }
+
+    private void Restart()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+
     }
 
     void HandleMovement()

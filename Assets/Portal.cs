@@ -41,7 +41,7 @@ public class Portal : MonoBehaviour
     {
         if (active == true && linkedPortal.active == true)
         {
-            Debug.Log("PENIS");
+            
         }
         HandleTravellers();
     }
@@ -75,10 +75,15 @@ public class Portal : MonoBehaviour
                 traveller.Teleport(transform, linkedPortal.transform, m.GetColumn(3), m.rotation);
                 traveller.graphicsClone.transform.SetPositionAndRotation(positionOld, rotOld);
                 // Can't rely on OnTriggerEnter/Exit to be called next frame since it depends on when FixedUpdate runs
-                Physics.gravity = travellerT.rotation * GM.initialGrav;
-                traveller.GetComponent<Rigidbody>().velocity = travellerT.rotation
-                    * (Quaternion.Inverse(rotOld)
-                    * traveller.GetComponent<Rigidbody>().velocity);
+
+                if (traveller.gameObject.layer == 9)
+                {
+                    Physics.gravity = travellerT.rotation * GM.initialGrav;
+                    traveller.GetComponent<Rigidbody>().velocity = travellerT.rotation
+                        * (Quaternion.Inverse(rotOld)
+                        * traveller.GetComponent<Rigidbody>().velocity);
+                }
+
 
 
                 linkedPortal.OnTravellerEnterPortal(traveller);

@@ -21,9 +21,11 @@ public class CheckFeet : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         feet = true;
+
     }
     private void OnTriggerExit(Collider other)
     {
         feet = false;
+
     }
 }
