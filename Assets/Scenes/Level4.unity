@@ -5526,6 +5526,9 @@ MonoBehaviour:
     m_RotationOrder: 4
   GM: {fileID: 0}
   SM: {fileID: 0}
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!136 &1159813369
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7741,6 +7744,9 @@ MonoBehaviour:
     m_RotationOrder: 4
   GM: {fileID: 0}
   SM: {fileID: 0}
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!136 &1472418370
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7990,6 +7996,9 @@ MonoBehaviour:
     m_RotationOrder: 4
   GM: {fileID: 0}
   SM: {fileID: 0}
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!136 &1475719333
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -9094,6 +9103,9 @@ MonoBehaviour:
     m_RotationOrder: 4
   GM: {fileID: 0}
   SM: {fileID: 0}
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!136 &1541401807
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -9388,6 +9400,9 @@ MonoBehaviour:
     m_RotationOrder: 4
   GM: {fileID: 0}
   SM: {fileID: 0}
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!136 &1561767189
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -15587,6 +15602,9 @@ MonoBehaviour:
     m_RotationOrder: 4
   GM: {fileID: 0}
   SM: {fileID: 0}
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!136 &2006877627
 CapsuleCollider:
   m_ObjectHideFlags: 0

@@ -2529,6 +2529,9 @@ MonoBehaviour:
     m_RotationOrder: 4
   GM: {fileID: 0}
   SM: {fileID: 0}
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!136 &618487283
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3091,6 +3094,9 @@ MonoBehaviour:
     m_RotationOrder: 4
   GM: {fileID: 0}
   SM: {fileID: 0}
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!136 &673024739
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5745,6 +5751,9 @@ MonoBehaviour:
     m_RotationOrder: 4
   GM: {fileID: 0}
   SM: {fileID: 0}
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!136 &1431233874
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7185,6 +7194,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   feet: 0
+  rb: {fileID: 0}
+  feetVel: {x: 0, y: 0, z: 0}
 --- !u!65 &1700445601
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7384,6 +7395,9 @@ MonoBehaviour:
     m_RotationOrder: 4
   GM: {fileID: 0}
   SM: {fileID: 0}
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!136 &1720303299
 CapsuleCollider:
   m_ObjectHideFlags: 0

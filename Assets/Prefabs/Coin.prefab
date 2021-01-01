@@ -137,6 +137,9 @@ MonoBehaviour:
     m_RotationOrder: 4
   GM: {fileID: 0}
   SM: {fileID: 0}
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!82 &1356815076975267325
 AudioSource:
   m_ObjectHideFlags: 0
