@@ -19,6 +19,7 @@ public class SimplePlayerControls : PortalTraveller
     public Transform playerCam;
     public Transform orientation;
 
+    bool disabled;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +33,18 @@ public class SimplePlayerControls : PortalTraveller
 
     private void Update()
     {
+        if (Input.GetKeyDown (KeyCode.P)) {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            Debug.Break ();
+        }
+        if (Input.GetKeyDown (KeyCode.O)) {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+        if (disabled) {
+            return;
+        }
         Look();
 
 
