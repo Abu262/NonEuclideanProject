@@ -72,7 +72,7 @@ public class PlayerController : PortalTraveller
     [SerializeField] private float startMaxSpeed;
 
     public float counterMovement = 0.175f;
-    private float threshold = 0.01f;
+    // private float threshold = 0.01f;
     public float maxSlopeAngle = 35f;
 
     [Header("Crouch & Slide")]

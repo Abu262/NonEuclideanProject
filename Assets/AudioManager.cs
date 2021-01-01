@@ -16,7 +16,7 @@ public class AudioManager : MonoBehaviour
     {
         instance = this;
         clips = new List<AudioClip>();
-        int index = 0;
+        // int index = 0;
     }
 
     // gets an audio clip index by name
