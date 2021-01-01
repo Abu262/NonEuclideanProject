@@ -30,8 +30,9 @@ public class PickUp : MonoBehaviour
         {
             item.Rb.velocity = Vector3.zero;
             item.Rb.angularVelocity = Vector3.zero;
-            
-            item.graphicsObject.transform.localPosition = Vector3.zero;
+            item.graphicsObject.transform.localPosition = Vector3.zero + new Vector3(0, 0, 1);
+            // item.transform.position = Vector3.zero + new Vector3(0, 0 , 1.5f);
+
             // right mouse button to release
             if (Input.GetMouseButtonDown(1)) 
             {
@@ -48,7 +49,7 @@ public class PickUp : MonoBehaviour
             {
                 item.gameObject.transform.SetParent(tempParent.transform);
                 isHolding = true;
-                item.graphicsObject.transform.eulerAngles = Vector3.zero;
+                item.graphicsObject.transform.eulerAngles = Camera.main.transform.eulerAngles;
                 // item.graphicsObject.transform.localPosition = tempParent.transform.localPosition - new Vector3(0, 0, 3);
 
                 // item.transform.position = objectPos;

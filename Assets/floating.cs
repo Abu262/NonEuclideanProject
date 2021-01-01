@@ -7,6 +7,7 @@ public class floating : MonoBehaviour
     public AnimationCurve myCurve;
     public GameManager GM;
     public SceneHandler SM;
+    public LayerMask whatIsPlayer;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +30,8 @@ public class floating : MonoBehaviour
     }
     void OnCollisionEnter(Collision collision)
     {
+        int layer = collision.gameObject.layer;
+        if (whatIsPlayer != (whatIsPlayer | (1 << layer))) return;
         if (SM.DisplayCounter != null)
         {
             SM.CoinCount += 1;
@@ -40,6 +43,8 @@ public class floating : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+        int layer = other.gameObject.layer;
+        if (whatIsPlayer != (whatIsPlayer | (1 << layer))) return;
         if (SM.DisplayCounter != null)
         {
             SM.CoinCount += 1;
