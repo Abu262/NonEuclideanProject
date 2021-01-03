@@ -100,7 +100,13 @@ public class SimplePlayerControls : PortalTraveller
             Vector3 curVel = orientation.transform.forward * move.z * moveSpeed
                 + orientation.transform.right * move.x * moveSpeed;    //rb.velocity;
             curVel += transform.rotation * new Vector3(0, baseVel.y, 0);
-            rb.velocity = curVel + cf.feetVel;
+
+        if (-(transform.rotation * cf.feetVel) != Vector3.zero)
+        {
+            Debug.Log(-(transform.rotation * cf.feetVel));
+        }
+
+            rb.velocity = curVel +  -(transform.rotation * cf.feetVel);
             //rb.AddForce(orientation.transform.forward * move.z * moveSpeed,ForceMode.Impulse);// * Time.deltaTime * modifier * multiplier * multiplierV);
             //rb.AddForce(orientation.transform.right * move.x * moveSpeed, ForceMode.Impulse);// * Time.deltaTime * modifier * multiplier);
         //}

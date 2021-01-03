@@ -11,11 +11,13 @@ public class BasicMovingPlatform : PortalTraveller
     bool flip;
     [HideInInspector]
     public Rigidbody rb;
+    Rigidbody childRb;
     public Transform Orientation;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        childRb = Orientation.gameObject.GetComponent<Rigidbody>();
         initialPos = transform.localPosition;
         Physics.IgnoreCollision(this.GetComponent<BoxCollider>(), Orientation.GetComponent<BoxCollider>());
     }
@@ -23,10 +25,10 @@ public class BasicMovingPlatform : PortalTraveller
     // Update is called once per frame
     void FixedUpdate()
     {
-        Debug.Log(transform.localPosition.magnitude - initialPos.magnitude);
+        //Debug.Log(transform.localPosition.magnitude - initialPos.magnitude);
         if (Mathf.Abs(transform.localPosition.magnitude - initialPos.magnitude) >= distance)
         {
-            flip = true;
+            flip = !flip;
         }
         else if (transform.localPosition.magnitude - initialPos.magnitude <= 0)
         {
@@ -37,10 +39,18 @@ public class BasicMovingPlatform : PortalTraveller
         {
             
             rb.velocity = Orientation.rotation * Direction * Time.fixedDeltaTime * speed;
+         
         }
         else
         {
             rb.velocity = Orientation.rotation * -Direction * Time.fixedDeltaTime * speed;
         }
+
+
+        childRb.MovePosition(this.transform.position);
+        childRb.MoveRotation(this.transform.rotation);
+
+
     }
+
 }

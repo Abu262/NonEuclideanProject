@@ -443,6 +443,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   feet: 0
+  rb: {fileID: 0}
+  feetVel: {x: 0, y: 0, z: 0}
 --- !u!1 &3961893788379837455
 GameObject:
   m_ObjectHideFlags: 0

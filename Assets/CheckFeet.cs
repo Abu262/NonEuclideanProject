@@ -27,8 +27,13 @@ public class CheckFeet : MonoBehaviour
         feet = true;
         if (other.transform.tag == "Moving Platform")
         {
-
-            feetVel = other.transform.parent.GetComponent<BasicMovingPlatform>().rb.velocity;
+            //
+            //Debug.Log(other.transform.parent.GetComponent<BasicMovingPlatform>().rb.velocity);
+            //Quaternion.Inverse(other.transform.parent.rotation) * 
+            
+            
+            feetVel = Quaternion.Inverse(other.transform.parent.rotation) *   other.transform.parent.GetComponent<BasicMovingPlatform>().rb.velocity;
+            //Debug.Log(other.name);
             //Debug.Log(rb.velocity);
         }
     }
