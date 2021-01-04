@@ -106,7 +106,7 @@ public class SimplePlayerControls : PortalTraveller
             Debug.Log(-(transform.rotation * cf.feetVel));
         }
 
-            rb.velocity = curVel +  -(transform.rotation * cf.feetVel);
+            rb.velocity = curVel +  (cf.feetVel);
             //rb.AddForce(orientation.transform.forward * move.z * moveSpeed,ForceMode.Impulse);// * Time.deltaTime * modifier * multiplier * multiplierV);
             //rb.AddForce(orientation.transform.right * move.x * moveSpeed, ForceMode.Impulse);// * Time.deltaTime * modifier * multiplier);
         //}
