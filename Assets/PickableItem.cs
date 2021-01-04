@@ -31,6 +31,7 @@ public class PickableItem : PortalTraveller
         {
             // Destroy(graphicsClone.GetComponent<Rigidbody>());
             Destroy(graphicsClone.GetComponent<BoxCollider>());
+            print("enter");
         }
     }
 }

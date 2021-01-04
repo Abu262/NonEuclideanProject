@@ -11,14 +11,13 @@ public class PickUp : MonoBehaviour
     public GameObject tempParent;
     public bool isHolding = false;
 
+    void Start() 
+    {
+        isHolding = false;
+    }
+
     void Update() 
     {
-        // left mouse button
-        // if (Input.GetMouseButtonDown(0)) 
-        // {
-        //     MouseDown();
-        // }
-
         distance = Vector3.Distance(item.gameObject.transform.position, tempParent.transform.position);
 
         if (distance >= 2f)
@@ -30,11 +29,12 @@ public class PickUp : MonoBehaviour
         {
             item.Rb.velocity = Vector3.zero;
             item.Rb.angularVelocity = Vector3.zero;
-            item.graphicsObject.transform.localPosition = Vector3.zero + new Vector3(0, 0, 1);
+            // item.transform.localPosition = Vector3.zero;
+            item.transform.localPosition = tempParent.transform.localPosition;
             // item.transform.position = Vector3.zero + new Vector3(0, 0 , 1.5f);
 
             // right mouse button to release
-            if (Input.GetMouseButtonDown(1)) 
+            if (Input.GetMouseButtonUp(0)) 
             {
                 // item.Rb.AddForce(tempParent.transform.forward * throwForce);
                 isHolding = false;
@@ -44,17 +44,19 @@ public class PickUp : MonoBehaviour
         {
             // objectPos = item.transform.position;
             item.gameObject.transform.SetParent(null);
-
-            if (Input.GetMouseButtonDown(0)) 
+            // item.graphicsObject.transform.localPosition = item.gameObject.transform.position;
+            if (Input.GetMouseButton(0)) 
             {
                 item.gameObject.transform.SetParent(tempParent.transform);
                 isHolding = true;
-                item.graphicsObject.transform.eulerAngles = Camera.main.transform.eulerAngles;
-                // item.graphicsObject.transform.localPosition = tempParent.transform.localPosition - new Vector3(0, 0, 3);
+                // item.graphicsObject.transform.eulerAngles = Camera.main.transform.eulerAngles;
+                item.transform.eulerAngles = Camera.main.transform.eulerAngles;
 
                 // item.transform.position = objectPos;
             }
         }
+        item.graphicsObject.transform.localPosition = Vector3.zero;
+        // print(item.graphicsObject.transform.position);
     }
 
 

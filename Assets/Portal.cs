@@ -88,8 +88,10 @@ public class Portal : MonoBehaviour
                 }
                 if (traveller.gameObject.layer == 10) 
                 {
-                    Physics.gravity = travellerT.rotation * GM.initialGrav;
-                    traveller.graphicsClone.GetComponent<Rigidbody>().velocity = travellerT.rotation
+                    GameObject clone = travellerT.gameObject.GetComponent<PickableItem>().graphicsClone;
+
+                    // Physics.gravity = clone.transform.rotation * GM.initialGrav;   
+                    traveller.graphicsClone.GetComponent<Rigidbody>().velocity = clone.transform.rotation
                         * (Quaternion.Inverse(rotOld)
                         * traveller.graphicsClone.GetComponent<Rigidbody>().velocity);
                     // if (traveller.GetComponent<PickableItem>() && traveller.GetComponent<PickableItem>().Rb) {
