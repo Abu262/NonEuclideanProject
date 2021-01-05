@@ -98,13 +98,15 @@ public class SimplePlayerControls : PortalTraveller
         //var movementPlane = new Vector3(baseVel.x, 0, baseVel.z);
         //if (movementPlane.magnitude < moveSpeed)
         //{
-            Vector3 curVel = orientation.transform.forward * move.z * moveSpeed
-                + orientation.transform.right * move.x * moveSpeed;    //rb.velocity;
-            curVel += transform.rotation * new Vector3(0, baseVel.y, 0);
+        Vector3 curVel = orientation.transform.forward * move.z * moveSpeed
+            + orientation.transform.right * move.x * moveSpeed;    //rb.velocity;
+        curVel += transform.rotation * new Vector3(0, baseVel.y, 0);
 
 
         // Debug.Log(Quaternion.FromToRotation(new Vector3(0f, -9.8f, 0f).normalized, Physics.gravity.normalized) * (cf.feetVel));
 
+        // NOTE: transform.Find is considered to be a last resort to find an object
+        // I'd suggest makinging some sort of public variable instead
         Transform c = gameObject.transform.Find("Model(Clone)");
 
         if (c != null && c.gameObject.activeSelf)
