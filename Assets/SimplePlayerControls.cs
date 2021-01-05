@@ -103,7 +103,7 @@ public class SimplePlayerControls : PortalTraveller
             curVel += transform.rotation * new Vector3(0, baseVel.y, 0);
 
 
-        Debug.Log(Quaternion.FromToRotation(new Vector3(0f, -9.8f, 0f).normalized, Physics.gravity.normalized) * (cf.feetVel));
+        // Debug.Log(Quaternion.FromToRotation(new Vector3(0f, -9.8f, 0f).normalized, Physics.gravity.normalized) * (cf.feetVel));
 
         Transform c = gameObject.transform.Find("Model(Clone)");
 

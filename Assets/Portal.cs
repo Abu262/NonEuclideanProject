@@ -79,27 +79,14 @@ public class Portal : MonoBehaviour
                 traveller.Teleport(transform, linkedPortal.transform, m.GetColumn(3), m.rotation);
                 traveller.graphicsClone.transform.SetPositionAndRotation(positionOld, rotOld);
                 // Can't rely on OnTriggerEnter/Exit to be called next frame since it depends on when FixedUpdate runs
-                if (traveller.gameObject.layer == 9)
+                if (traveller.gameObject.layer == 9 || traveller.gameObject.layer == 10)
                 {
-                    Physics.gravity = travellerT.rotation * GM.initialGrav;
+                    if (traveller.gameObject.layer == 9)
+                        Physics.gravity = travellerT.rotation * GM.initialGrav;
+                        
                     traveller.GetComponent<Rigidbody>().velocity = travellerT.rotation
                         * (Quaternion.Inverse(rotOld)
                         * traveller.GetComponent<Rigidbody>().velocity);
-                }
-                if (traveller.gameObject.layer == 10) 
-                {
-                    GameObject clone = travellerT.gameObject.GetComponent<PickableItem>().graphicsClone;
-
-                    // Physics.gravity = clone.transform.rotation * GM.initialGrav;   
-                    traveller.graphicsClone.GetComponent<Rigidbody>().velocity = clone.transform.rotation
-                        * (Quaternion.Inverse(rotOld)
-                        * traveller.graphicsClone.GetComponent<Rigidbody>().velocity);
-                    // if (traveller.GetComponent<PickableItem>() && traveller.GetComponent<PickableItem>().Rb) {
-                    //     Destroy(traveller.GetComponent<PickableItem>().Rb);
-                    //     Destroy(traveller.GetComponent<BoxCollider>());
-                    //     Destroy(traveller.GetComponent<PickableItem>());
-                    //     // Destroy(traveller.GetComponent<PickUp>());
-                    // }
                 }
 
 

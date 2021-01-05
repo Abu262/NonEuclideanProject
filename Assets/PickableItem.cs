@@ -11,7 +11,7 @@ public class PickableItem : PortalTraveller
 
     private void Awake() 
     {
-        rb = graphicsObject.GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
     }
 
     private void Start() 
@@ -24,14 +24,14 @@ public class PickableItem : PortalTraveller
         rb.velocity = Vector3.zero;
     }
     
-    public override void EnterPortalThreshold()
-    {
-        base.EnterPortalThreshold();
-        if (graphicsClone && graphicsClone.GetComponent<Rigidbody>()) 
-        {
-            // Destroy(graphicsClone.GetComponent<Rigidbody>());
-            Destroy(graphicsClone.GetComponent<BoxCollider>());
-            print("enter");
-        }
-    }
+    // public override void EnterPortalThreshold()
+    // {
+    //     base.EnterPortalThreshold();
+    //     if (graphicsClone && graphicsClone.GetComponent<Rigidbody>()) 
+    //     {
+    //         // Destroy(graphicsClone.GetComponent<Rigidbody>());
+    //         Destroy(graphicsClone.GetComponent<BoxCollider>());
+    //         print("enter");
+    //     }
+    // }
 }
