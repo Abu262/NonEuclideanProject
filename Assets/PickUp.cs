@@ -20,9 +20,12 @@ public class PickUp : MonoBehaviour
     {
         distance = Vector3.Distance(item.gameObject.transform.position, tempParent.transform.position);
 
-        if (distance >= 2f)
+        // print(distance);
+
+        if (distance >= 2f && !isHolding)
         {
             isHolding = false;
+            return;
         }
 
         if (isHolding) 
