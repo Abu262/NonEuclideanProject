@@ -20,10 +20,11 @@ public class SimplePlayerControls : PortalTraveller
     public Transform orientation;
 
     bool disabled;
-
+    SceneHandler SM;
     // Start is called before the first frame update
     void Start()
     {
+        SM = FindObjectOfType<SceneHandler>();
         rb = GetComponent<Rigidbody>();
         //playerScale = transform.localScale;
         Cursor.lockState = CursorLockMode.Locked;
@@ -101,12 +102,20 @@ public class SimplePlayerControls : PortalTraveller
                 + orientation.transform.right * move.x * moveSpeed;    //rb.velocity;
             curVel += transform.rotation * new Vector3(0, baseVel.y, 0);
 
-        if (-(transform.rotation * cf.feetVel) != Vector3.zero)
+
+        Debug.Log(Quaternion.FromToRotation(new Vector3(0f, -9.8f, 0f).normalized, Physics.gravity.normalized) * (cf.feetVel));
+
+        Transform c = gameObject.transform.Find("Model(Clone)");
+
+        if (c != null && c.gameObject.activeSelf)
         {
-            Debug.Log(-(transform.rotation * cf.feetVel));
+           // rb.velocity = curVel + c.transform.rotation *  (cf.feetVel);
+        }
+        else
+        {
+            rb.velocity = curVel + (transform.rotation * (cf.feetVel));
         }
 
-            rb.velocity = curVel +  (cf.feetVel);
             //rb.AddForce(orientation.transform.forward * move.z * moveSpeed,ForceMode.Impulse);// * Time.deltaTime * modifier * multiplier * multiplierV);
             //rb.AddForce(orientation.transform.right * move.x * moveSpeed, ForceMode.Impulse);// * Time.deltaTime * modifier * multiplier);
         //}

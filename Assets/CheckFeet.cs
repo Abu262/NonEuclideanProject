@@ -10,6 +10,9 @@ public class CheckFeet : MonoBehaviour
 
     [HideInInspector]
     public Vector3 feetVel;
+
+    float objectCount = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,23 +30,35 @@ public class CheckFeet : MonoBehaviour
         feet = true;
         if (other.transform.tag == "Moving Platform")
         {
+
             //
             //Debug.Log(other.transform.parent.GetComponent<BasicMovingPlatform>().rb.velocity);
             //Quaternion.Inverse(other.transform.parent.rotation) * 
-            
-            
-            feetVel = Quaternion.Inverse(other.transform.parent.rotation) *   other.transform.parent.GetComponent<BasicMovingPlatform>().rb.velocity;
+
+            //Quaternion.Inverse(other.transform.parent.rotation) *  
+            //if (!other.name.Contains("Clone"))
+            //{
+                //Debug.Log(Quaternion.Inverse(other.transform.rotation) * other.transform.parent.GetComponent<BasicMovingPlatform>().rb.velocity);
+                feetVel = Quaternion.Inverse(other.transform.rotation) * other.transform.parent.GetComponent<BasicMovingPlatform>().rb.velocity;
+                //                feetVel = other.transform.rotation * other.transform.parent.GetComponent<BasicMovingPlatform>().rb.velocity;
+            //}
+            //else
+            //{
+
+            //}
+
             //Debug.Log(other.name);
             //Debug.Log(rb.velocity);
         }
     }
     private void OnTriggerEnter(Collider other)
     {
-
+        
     }
 
     private void OnTriggerExit(Collider other)
     {
+        
         feet = false;
         feetVel = Vector3.zero;
         //if (other.transform.tag == "Moving Platform")

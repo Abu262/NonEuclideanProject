@@ -13,6 +13,8 @@ public class BasicMovingPlatform : PortalTraveller
     public Rigidbody rb;
     Rigidbody childRb;
     public Transform Orientation;
+
+    float timeLeft;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,19 +23,24 @@ public class BasicMovingPlatform : PortalTraveller
         initialPos = transform.localPosition;
         Physics.IgnoreCollision(this.GetComponent<BoxCollider>(), Orientation.GetComponent<BoxCollider>());
     }
+    private void Update()
+    {
+        timeLeft -= Time.deltaTime;
+    }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         //Debug.Log(transform.localPosition.magnitude - initialPos.magnitude);
-        if (Mathf.Abs(transform.localPosition.magnitude - initialPos.magnitude) >= distance)
+        if (timeLeft <= 0)
         {
+            timeLeft = distance;
             flip = !flip;
         }
-        else if (transform.localPosition.magnitude - initialPos.magnitude <= 0)
-        {
-            flip = false;
-        }
+        //else if (transform.localPosition.magnitude - initialPos.magnitude <= 0)
+        //{
+        //    flip = false;
+        //}
 
         if (flip == false)
         {
