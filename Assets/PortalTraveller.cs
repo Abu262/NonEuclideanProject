@@ -11,6 +11,8 @@ public class PortalTraveller : MonoBehaviour
     public Material[] originalMaterials { get; set; }
     public Material[] cloneMaterials { get; set; }
 
+    //[HideInInspector]
+    //public bool inPortal;
     public virtual void Teleport(Transform fromPortal, Transform toPortal, Vector3 pos, Quaternion rot)
     {
         transform.position = pos;
@@ -20,6 +22,15 @@ public class PortalTraveller : MonoBehaviour
     // Called when first touches portal
     public virtual void EnterPortalThreshold()
     {
+        if (gameObject.GetComponent<SimplePlayerControls>() != null)
+        {
+            gameObject.GetComponent<SimplePlayerControls>().inPortal = true;
+        }
+        if (gameObject.GetComponent<BasicMovingPlatform>() != null)
+        {
+            gameObject.GetComponent<BasicMovingPlatform>().inPortal = true;
+        }
+
         if (graphicsClone == null)
         {
             graphicsClone = Instantiate(graphicsObject);
@@ -37,6 +48,14 @@ public class PortalTraveller : MonoBehaviour
     // Called once no longer touching portal (excluding when teleporting)
     public virtual void ExitPortalThreshold()
     {
+        if (gameObject.GetComponent<SimplePlayerControls>() != null)
+        {
+            gameObject.GetComponent<SimplePlayerControls>().inPortal = false;
+        }
+        if (gameObject.GetComponent<BasicMovingPlatform>() != null)
+        {
+            gameObject.GetComponent<BasicMovingPlatform>().inPortal = false;
+        }
         graphicsClone.SetActive(false);
         // Disable slicing
         for (int i = 0; i < originalMaterials.Length; i++)

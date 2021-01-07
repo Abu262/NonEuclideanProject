@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3961893787467912180}
   - component: {fileID: 3961893787467912183}
   - component: {fileID: 3961893787467912182}
+  - component: {fileID: 724612706}
   m_Layer: 9
   m_Name: Player
   m_TagString: Untagged
@@ -175,11 +176,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   graphicsObject: {fileID: 3961893788379837455}
-  moveSpeed: 6
+  moveSpeed: 150
   jumpForce: 5
   cf: {fileID: 3961893788274078292}
   playerCam: {fileID: 3961893787874167162}
   orientation: {fileID: 3961893788617230719}
+  inPortal: 0
+--- !u!114 &724612706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3961893787467912169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f03d695cec7d6bc45b9d40316eff8655, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3961893787874167165
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,7 +222,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3961893787874167165}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5799999, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3961893787467912176}
@@ -445,6 +459,9 @@ MonoBehaviour:
   feet: 0
   rb: {fileID: 0}
   feetVel: {x: 0, y: 0, z: 0}
+  feetScale: 0
+  onPlatform: 0
+  feetDir: {x: 0, y: 0, z: 0}
 --- !u!1 &3961893788379837455
 GameObject:
   m_ObjectHideFlags: 0

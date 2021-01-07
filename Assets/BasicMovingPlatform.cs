@@ -15,6 +15,8 @@ public class BasicMovingPlatform : PortalTraveller
     public Transform Orientation;
 
     float timeLeft;
+    [HideInInspector]
+    public bool inPortal;
     // Start is called before the first frame update
     void Start()
     {

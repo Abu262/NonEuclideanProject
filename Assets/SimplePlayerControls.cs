@@ -21,6 +21,9 @@ public class SimplePlayerControls : PortalTraveller
 
     bool disabled;
     SceneHandler SM;
+
+    [HideInInspector]
+    public bool inPortal = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -55,12 +58,16 @@ public class SimplePlayerControls : PortalTraveller
     void LateUpdate()
     {
         // Handle the movement
-        HandleMovement();
+        
 
         // Handle Jumping
         HandleJump();
 
         Restart();
+    }
+    private void FixedUpdate()
+    {
+        HandleMovement();
     }
 
     private void Restart()
@@ -98,28 +105,93 @@ public class SimplePlayerControls : PortalTraveller
         //var movementPlane = new Vector3(baseVel.x, 0, baseVel.z);
         //if (movementPlane.magnitude < moveSpeed)
         //{
-        Vector3 curVel = orientation.transform.forward * move.z * moveSpeed
-            + orientation.transform.right * move.x * moveSpeed;    //rb.velocity;
-        curVel += transform.rotation * new Vector3(0, baseVel.y, 0);
+            Vector3 curVel = (orientation.transform.forward * move.z * moveSpeed
+                + orientation.transform.right * move.x * moveSpeed) * Time.fixedDeltaTime;    //rb.velocity;
+            curVel += transform.rotation * new Vector3(0, baseVel.y, 0);
 
 
-        // Debug.Log(Quaternion.FromToRotation(new Vector3(0f, -9.8f, 0f).normalized, Physics.gravity.normalized) * (cf.feetVel));
+        //        Debug.Log(Quaternion.FromToRotation(new Vector3(0f, -9.8f, 0f).normalized, Physics.gravity.normalized) * (cf.feetVel));
 
-        // NOTE: transform.Find is considered to be a last resort to find an object
-        // I'd suggest makinging some sort of public variable instead
-        Transform c = gameObject.transform.Find("Model(Clone)");
+        //Transform c = gameObject.transform.Find("Model(Clone)");
 
-        if (c != null && c.gameObject.activeSelf)
+
+
+        //if in a portal and on a platform
+        //ignore the platform rigidbody because it sucks
+        //and match the velocity and keep it moving until we are out of the portal
+        
+
+        if ((inPortal == true && cf.onPlatform == false))
         {
-           // rb.velocity = curVel + c.transform.rotation *  (cf.feetVel);
+            Debug.Log("PENIS");
+
+            //          float scale = Mathf.Abs( Vector3.Dot(cf.feetVel, new Vector3(1, 1, 1)));
+            //rb.useGravity = false;
+            //rb.isKinematic = true;
+            //            rb.velocity = cf.feetVel.normalized * scale;///Vector3.zero;
+        }
+
+
+        if ((inPortal == true && cf.onPlatform == true ))
+        {
+            
+            curVel -= transform.rotation * new Vector3(0, baseVel.y, 0);
+
+
+            rb.velocity = curVel;
+            if ((transform.rotation * cf.feetDir).y != 0)
+            {
+                rb.velocity += transform.rotation * new Vector3(0, (cf.feetScale), 0);
+            }
+            else
+            {
+                rb.velocity = curVel + (cf.feetVel);
+            }
+            //          float scale = Mathf.Abs( Vector3.Dot(cf.feetVel, new Vector3(1, 1, 1)));
+            rb.useGravity = false;
+            Debug.Log(transform.rotation * new Vector3(0, (cf.feetScale), 0));
+            //Debug.Log(transform.rotation * cf.feetDir);
+            //rb.isKinematic = true;
+            //            rb.velocity = cf.feetVel.normalized * scale;///Vector3.zero;
         }
         else
         {
-            rb.velocity = curVel + (transform.rotation * (cf.feetVel));
+            Debug.Log("GRAVITY IS ON");
+            rb.useGravity = true;
+            //rb.isKinematic = false;
+            rb.velocity = curVel + (cf.feetVel);
+
         }
 
-            //rb.AddForce(orientation.transform.forward * move.z * moveSpeed,ForceMode.Impulse);// * Time.deltaTime * modifier * multiplier * multiplierV);
-            //rb.AddForce(orientation.transform.right * move.x * moveSpeed, ForceMode.Impulse);// * Time.deltaTime * modifier * multiplier);
+    //    float scale = Vector3.Dot(cf.feetVel, new Vector3(1, 1, 1));
+    //    //curVel -= transform.rotation * new Vector3(0, baseVel.y, 0);
+    //    rb.velocity = curVel;// + cf.feetDir;// * cf.feetScale;//transform.rotation * new Vector3(0, cf.feetScale, 0);
+    //                         //          float scale = Mathf.Abs( Vector3.Dot(cf.feetVel, new Vector3(1, 1, 1)));
+    //    if (cf.feetDir == Physics.gravity.normalized)
+    //    {
+    //        rb.velocity += transform.rotation * new Vector3(0, cf.feetScale, 0);
+    //        rb.useGravity = true;
+    //    }
+    //    else
+    //    {
+    //        rb.useGravity = false;
+    //    }
+
+    //    Debug.Log(rb.velocity.ToString() + cf.feetVel.ToString());
+    //    //rb.isKinematic = true;
+    //    //            rb.velocity = cf.feetVel.normalized * scale;///Vector3.zero;
+    //}
+
+
+        //}
+//        Debug.Log(rb.velocity);
+        if (cf.feetVel != Vector3.zero)
+        {
+            
+        }
+
+        //rb.AddForce(orientation.transform.forward * move.z * moveSpeed,ForceMode.Impulse);// * Time.deltaTime * modifier * multiplier * multiplierV);
+        //rb.AddForce(orientation.transform.right * move.x * moveSpeed, ForceMode.Impulse);// * Time.deltaTime * modifier * multiplier);
         //}
 
 
@@ -160,5 +232,7 @@ public class SimplePlayerControls : PortalTraveller
         
     }
 
+
+    
 
 }
