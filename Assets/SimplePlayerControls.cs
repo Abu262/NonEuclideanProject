@@ -123,7 +123,7 @@ public class SimplePlayerControls : PortalTraveller
 
         if ((inPortal == true && cf.onPlatform == false))
         {
-            Debug.Log("PENIS");
+
 
             //          float scale = Mathf.Abs( Vector3.Dot(cf.feetVel, new Vector3(1, 1, 1)));
             //rb.useGravity = false;
@@ -156,7 +156,7 @@ public class SimplePlayerControls : PortalTraveller
         }
         else
         {
-            Debug.Log("GRAVITY IS ON");
+            //Debug.Log("GRAVITY IS ON");
             rb.useGravity = true;
             //rb.isKinematic = false;
             rb.velocity = curVel + (cf.feetVel);

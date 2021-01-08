@@ -9,7 +9,9 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public int CoinCount = 0;
 
-    
+
+    public static GameManager instance;
+
     public TextMeshProUGUI DisplayCounter;
 
     public int LevelTotal = 0;
@@ -26,14 +28,28 @@ public class GameManager : MonoBehaviour
     //-1 negative x
     //1 positive x
 
-    //-3 negative z
-    //3 positive z
+    void Awake()
+    {
+        Application.targetFrameRate = 60;
+
+        if (instance == null)
+            instance = this;
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        DontDestroyOnLoad(gameObject);
+
+        
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         initialGrav = Physics.gravity;
-        //BGM.Play();
+        BGM.Play();
     }
 
     // Update is called once per frame

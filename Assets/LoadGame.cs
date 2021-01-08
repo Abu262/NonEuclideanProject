@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-public class movePlayer : MonoBehaviour
+public class LoadGame : MonoBehaviour
 {
-
     // Start is called before the first frame update
     void Start()
     {
@@ -17,8 +16,8 @@ public class movePlayer : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void click()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(1);
     }
 }
