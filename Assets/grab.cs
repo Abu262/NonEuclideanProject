@@ -38,6 +38,12 @@ public class grab : MonoBehaviour
                         sz.Dir = -1;
                     }
                 }
+                else if (hit.collider.tag == "Rotator")
+                {
+//                    Debug.Log("anime0");
+                    RotateSection rs = hit.collider.gameObject.GetComponent<RotateSection>();
+                    rs.RotateChildren();
+                }
             }
         }
     }

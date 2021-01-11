@@ -6,6 +6,7 @@ TagManager:
   tags:
   - ZBlock
   - Moving Platform
+  - Rotator
   layers:
   - Default
   - TransparentFX
