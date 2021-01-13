@@ -30,7 +30,7 @@ public class RotateSection : MonoBehaviour
     public void RotateChildren()
     {
         //degrees = (degrees + 90) % 360;
-        //Debug.Log(degrees);
+        Debug.Log(degrees);
         //Vector3 baseAxis = new Vector3(1, 1, 1) - Axis;
         //to = new Vector3(baseAxis)
         //baseAxis = new Vector3(baseAxis.x * T.rotation.eulerAngles.x, baseAxis.y * T.rotation.eulerAngles.y, baseAxis.z * T.rotation.eulerAngles.z);
