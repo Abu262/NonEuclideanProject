@@ -28,15 +28,17 @@ public class grab : MonoBehaviour
                 //if we hit an item display the item
                 if (hit.collider.tag == "ZBlock")
                 {
-                    SlideZ sz = hit.collider.gameObject.GetComponent<SlideZ>();
-                    if (sz.Dir == 0 || sz.Dir == -1)
-                    {
-                        sz.Dir = 1;
-                    }
-                    else if (sz.Dir == 1)
-                    {
-                        sz.Dir = -1;
-                    }
+                    Debug.Log("PENIS");
+                    SlideZ sz = hit.collider.GetComponentInParent<SlideZ>();//.GetComponent<SlideZ>();
+                    //if (sz.Dir == 0 || sz.Dir == -1)
+                    //{
+                    //    sz.Dir = 1;
+                    //}
+                    //else if (sz.Dir == 1)
+                    //{
+                    //    sz.Dir = -1;
+                    //}
+                    sz.flip = !sz.flip;
                 }
                 else if (hit.collider.tag == "Rotator")
                 {

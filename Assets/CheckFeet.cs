@@ -55,7 +55,7 @@ public class CheckFeet : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         feet = true;
-        if (other.transform.tag == "Moving Platform")
+        if (other.transform.tag == "Moving Platform" || other.transform.tag == "ZBlock")
         {
             BMP = other.GetComponentInParent<BasicMovingPlatform>();
             onPlatform = true;
@@ -68,22 +68,39 @@ public class CheckFeet : MonoBehaviour
             //if (!other.name.Contains("Clone"))
             //{
 //            Debug.Log(other.name);
-            Quaternion newGrav = Quaternion.FromToRotation(new Vector3(0f, -9.8f, 0f).normalized, Physics.gravity.normalized);
-            Vector3 defVel = Quaternion.Inverse(other.transform.parent.rotation) * other.transform.parent.GetComponent<BasicMovingPlatform>().rb.velocity;
-            //Debug.Log(Quaternion.Inverse(other.transform.rotation) * other.transform.parent.GetComponent<BasicMovingPlatform>().rb.velocity);
-            feetScale = Vector3.Dot(other.transform.parent.GetComponent<BasicMovingPlatform>().rb.velocity, new Vector3(1, 1, 1));
-            feetDir = (other.transform.parent.GetComponent<BasicMovingPlatform>().rb.velocity).normalized;
-            if (Vector3.Dot(other.transform.parent.GetComponent<BasicMovingPlatform>().rb.velocity, Physics.gravity) == 0)
+
+            if (other.transform.tag == "Moving Platform")
             {
-                feetVel = other.transform.parent.GetComponent<BasicMovingPlatform>().rb.velocity;
-                //feetScale = other.transform.parent.GetComponent<BasicMovingPlatform>().rb.velocity
+                Quaternion newGrav = Quaternion.FromToRotation(new Vector3(0f, -9.8f, 0f).normalized, Physics.gravity.normalized);
+                Vector3 defVel = Quaternion.Inverse(other.transform.parent.rotation) * other.transform.parent.GetComponent<BasicMovingPlatform>().rb.velocity;
+                //Debug.Log(Quaternion.Inverse(other.transform.rotation) * other.transform.parent.GetComponent<BasicMovingPlatform>().rb.velocity);
+                feetScale = Vector3.Dot(other.transform.parent.GetComponent<BasicMovingPlatform>().rb.velocity, new Vector3(1, 1, 1));
+                feetDir = (other.transform.parent.GetComponent<BasicMovingPlatform>().rb.velocity).normalized;
+                if (Vector3.Dot(other.transform.parent.GetComponent<BasicMovingPlatform>().rb.velocity, Physics.gravity) == 0)
+                {
+                    feetVel = other.transform.parent.GetComponent<BasicMovingPlatform>().rb.velocity;
+                    //feetScale = other.transform.parent.GetComponent<BasicMovingPlatform>().rb.velocity
+                }
+            }
+            else if (other.transform.tag == "ZBlock")
+            {
+                Quaternion newGrav = Quaternion.FromToRotation(new Vector3(0f, -9.8f, 0f).normalized, Physics.gravity.normalized);
+                Vector3 defVel = Quaternion.Inverse(other.transform.parent.rotation) * other.transform.parent.GetComponent<SlideZ>().rb.velocity;
+                //Debug.Log(Quaternion.Inverse(other.transform.rotation) * other.transform.parent.GetComponent<BasicMovingPlatform>().rb.velocity);
+                feetScale = Vector3.Dot(other.transform.parent.GetComponent<SlideZ>().rb.velocity, new Vector3(1, 1, 1));
+                feetDir = (other.transform.parent.GetComponent<SlideZ>().rb.velocity).normalized;
+                if (Vector3.Dot(other.transform.parent.GetComponent<SlideZ>().rb.velocity, Physics.gravity) == 0)
+                {
+                    feetVel = other.transform.parent.GetComponent<SlideZ>().rb.velocity;
+                    //feetScale = other.transform.parent.GetComponent<BasicMovingPlatform>().rb.velocity
+                }
             }
             //else
             //{
             //    feetVel = Vector3.zero;
             //}
 
-                //                feetVel = other.transform.rotation * other.transform.parent.GetComponent<BasicMovingPlatform>().rb.velocity;
+            //                feetVel = other.transform.rotation * other.transform.parent.GetComponent<BasicMovingPlatform>().rb.velocity;
             //}
             //else
             //{
