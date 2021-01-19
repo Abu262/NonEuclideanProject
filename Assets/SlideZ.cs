@@ -18,6 +18,11 @@ public class SlideZ : PortalTraveller
     float timeLeft;
     [HideInInspector]
     public bool inPortal;
+
+
+    public FlagTrigger Front;
+    public FlagTrigger Back;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +30,22 @@ public class SlideZ : PortalTraveller
         childRb = Orientation.gameObject.GetComponent<Rigidbody>();
         initialPos = transform.localPosition;
         Physics.IgnoreCollision(this.GetComponent<BoxCollider>(), Orientation.GetComponent<BoxCollider>());
+        if ((transform.rotation * Direction).x == 0)
+        {
+            rb.constraints = rb.constraints | RigidbodyConstraints.FreezePositionX;
+            childRb.constraints = childRb.constraints | RigidbodyConstraints.FreezePositionX;
+        }
+        if ((transform.rotation * Direction).y == 0)
+        {
+            rb.constraints = rb.constraints | RigidbodyConstraints.FreezePositionY;
+            childRb.constraints = childRb.constraints | RigidbodyConstraints.FreezePositionY;
+        }
+        if ((transform.rotation * Direction).z == 0)
+        {
+            rb.constraints = rb.constraints | RigidbodyConstraints.FreezePositionZ;
+            childRb.constraints = childRb.constraints | RigidbodyConstraints.FreezePositionZ;
+        }
+        rb.constraints = rb.constraints | RigidbodyConstraints.FreezeRotation;
     }
     private void Update()
     {
@@ -44,16 +65,32 @@ public class SlideZ : PortalTraveller
         //{
         //    flip = false;
         //}
-
+        
         if (flip == false)
         {
+            if  (Front.Flag == false)
+            {
+                rb.velocity = Orientation.rotation * Direction * Time.fixedDeltaTime * speed;
+            }
+            else
+            {
+                rb.velocity = Vector3.zero;
+            }
 
-            rb.velocity = Orientation.rotation * Direction * Time.fixedDeltaTime * speed;
 
         }
         else
         {
-            rb.velocity = Orientation.rotation * -Direction * Time.fixedDeltaTime * speed;
+            if (Back.Flag == false)
+            {
+                rb.velocity = Orientation.rotation * -Direction * Time.fixedDeltaTime * speed;
+            }
+            else
+            {
+                rb.velocity = Vector3.zero;
+            }
+
+
         }
 
 
@@ -62,4 +99,19 @@ public class SlideZ : PortalTraveller
 
 
     }
+
+    //private void OnCollisionStay(Collision collision)
+    //{ 
+    //    if (collision.gameObject.tag != "Player")
+    //    {
+    //        touchingNonPlayer = true;
+    //    }
+    //}
+    //private void OnCollisionExit(Collision collision)
+    //{
+    //    if (collision.gameObject.tag != "Player")
+    //    {
+    //        touchingNonPlayer = false;
+    //    }
+    //}
 }

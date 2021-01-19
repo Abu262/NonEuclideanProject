@@ -28,8 +28,9 @@ public class grab : MonoBehaviour
                 //if we hit an item display the item
                 if (hit.collider.tag == "ZBlock")
                 {
-                    Debug.Log("PENIS");
+
                     SlideZ sz = hit.collider.GetComponentInParent<SlideZ>();//.GetComponent<SlideZ>();
+
                     //if (sz.Dir == 0 || sz.Dir == -1)
                     //{
                     //    sz.Dir = 1;
