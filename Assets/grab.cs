@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class grab : MonoBehaviour
 {
+    public LayerMask Mask;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,13 +23,14 @@ public class grab : MonoBehaviour
                     Camera.main.transform.position,
                     Camera.main.transform.forward,
                     out hit,
-                    20f
+                    3f,
+                    ~(1 << 12)
                 ))
             {
                 //if we hit an item display the item
                 if (hit.collider.tag == "ZBlock")
                 {
-
+                    Debug.Log("HIT");
                     SlideZ sz = hit.collider.GetComponentInParent<SlideZ>();//.GetComponent<SlideZ>();
 
                     //if (sz.Dir == 0 || sz.Dir == -1)

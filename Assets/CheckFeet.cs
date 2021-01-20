@@ -89,7 +89,7 @@ public class CheckFeet : MonoBehaviour
                 //Debug.Log(Quaternion.Inverse(other.transform.rotation) * other.transform.parent.GetComponent<BasicMovingPlatform>().rb.velocity);
                 feetScale = Vector3.Dot(other.transform.parent.GetComponent<SlideZ>().rb.velocity, new Vector3(1, 1, 1));
                 feetDir = (other.transform.parent.GetComponent<SlideZ>().rb.velocity).normalized;
-                Debug.Log(other.transform.parent.GetComponent<SlideZ>().rb.velocity);
+//                Debug.Log(other.transform.parent.GetComponent<SlideZ>().rb.velocity);
                 if (Vector3.Dot(other.transform.parent.GetComponent<SlideZ>().rb.velocity, Physics.gravity) == 0)
                 {
                     
