@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class LoadGame : MonoBehaviour
 {
-
+    public int levelID;
     float initialPos;
 
     // Start is called before the first frame update
@@ -21,7 +21,7 @@ public class LoadGame : MonoBehaviour
 
     public void click()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(levelID);
 
     }
 }

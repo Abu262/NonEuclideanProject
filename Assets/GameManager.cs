@@ -6,9 +6,22 @@ public class GameManager : MonoBehaviour
 {
     public int Dir;
 
+    //[HideInInspector]
+    public bool colorblindMode = false;
+    public Material[] materialsCB;
+
+    //[HideInInspector]
+    public int VolumeScale = 5;
+    //[HideInInspector]
+    public int MouseScale = 5;
+
+    //[HideInInspector]
+    public int startID = 1;
+
     [HideInInspector]
     public int CoinCount = 0;
 
+    
 
     public static GameManager instance;
 

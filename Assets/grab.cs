@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class grab : MonoBehaviour
 {
-    public LayerMask Mask;
+    public float grabLength = 4f;
+    //public LayerMask Mask;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +24,7 @@ public class grab : MonoBehaviour
                     Camera.main.transform.position,
                     Camera.main.transform.forward,
                     out hit,
-                    3f,
+                    grabLength,
                     ~(1 << 12)
                 ))
             {
