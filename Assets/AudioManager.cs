@@ -12,11 +12,27 @@ public class AudioManager : MonoBehaviour
 
     public float fadeDuration = 0.75f;
 
+    private void Awake()
+    {
+        //instance = this;
+
+        // int index = 0;
+
+        if (instance == null)
+            instance = this;
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        DontDestroyOnLoad(gameObject);
+    }
+
     private void Start() 
     {
-        instance = this;
-        clips = new List<AudioClip>();
-        // int index = 0;
+       
+        //clips = new List<AudioClip>();
     }
 
     // gets an audio clip index by name

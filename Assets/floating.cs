@@ -25,7 +25,8 @@ public class floating : MonoBehaviour
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
 
-        GM.AS.Play();
+//        GM.AS.Play();
+        GM.AM.PlaySound("CoinSound", GM.AM.gameObject, false, 0.1f * GM.VolumeScale, false);
         Destroy(gameObject);
     }
     void OnCollisionEnter(Collision collision)
@@ -38,7 +39,8 @@ public class floating : MonoBehaviour
             SM.DisplayCounter.text = "Collected: " + SM.CoinCount.ToString() + "\nRequired: " + SM.LevelTotal.ToString();
         }
 
-        GM.AS.Play();
+        //GM.AS.Play();
+        GM.AM.PlaySound("CoinSound", GM.AM.gameObject, false, 0.1f * GM.VolumeScale, false);
         Destroy(gameObject);
     }
     private void OnTriggerEnter(Collider other)
@@ -50,7 +52,8 @@ public class floating : MonoBehaviour
             SM.CoinCount += 1;
             SM.DisplayCounter.text = "Collected: " + SM.CoinCount.ToString() + "\nRequired: " + SM.LevelTotal.ToString();
         }
-        GM.AS.Play();
+        //GM.AS.Play();
+        GM.AM.PlaySound("CoinSound", GM.AM.gameObject, false, 0.1f * GM.VolumeScale, false);
         Destroy(gameObject);
     }
 }

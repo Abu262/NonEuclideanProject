@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class OptionsButtons : MonoBehaviour
 {
     GameManager GM;
+    AudioManager AM;
+
     public TextMeshProUGUI colorT;
     public TextMeshProUGUI mouseT;
     public TextMeshProUGUI volumeT;
@@ -18,10 +20,17 @@ public class OptionsButtons : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         bobSpeed = Random.Range(-2f, 2f);
 //        waitTime = Random.Range(0f, 4f);
         GM = FindObjectOfType<GameManager>();
         initialPos = transform.localPosition.y;
+
+        if (levelT != null)
+        {
+            levelT.text = "Level: " + GM.startID.ToString();
+        }
     }
 
     // Update is called once per frame
@@ -50,6 +59,20 @@ public class OptionsButtons : MonoBehaviour
         {
             GM.VolumeScale = 0;
         }
+
+        AM = FindObjectOfType<AudioManager>();
+
+        AudioSource[] ASlist;
+
+        
+        ASlist = AM.GetComponents<AudioSource>();
+
+        foreach (AudioSource AS in ASlist)
+        {
+            AS.volume = 0.1f * GM.VolumeScale;
+                
+        }
+
         volumeT.text = "Volume: " + GM.VolumeScale.ToString();
     }
     public void SwapColorblind()
@@ -68,7 +91,7 @@ public class OptionsButtons : MonoBehaviour
     public void chooseLevel(int ID)
     {
         GM.startID += 1;
-        if (GM.startID > ID)
+        if (GM.startID > PlayerPrefs.GetInt("furthestLevel"))
         {
             GM.startID = 1;
         }

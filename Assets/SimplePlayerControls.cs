@@ -27,6 +27,7 @@ public class SimplePlayerControls : PortalTraveller
     // Start is called before the first frame update
     void Start()
     {
+        sensitivity = FindObjectOfType<GameManager>().MouseScale * 10;
         SM = FindObjectOfType<SceneHandler>();
         rb = GetComponent<Rigidbody>();
         //playerScale = transform.localScale;
@@ -62,7 +63,7 @@ public class SimplePlayerControls : PortalTraveller
 
         // Handle Jumping
         HandleJump();
-
+        returnToMenu();
         Restart();
     }
     private void FixedUpdate()
@@ -77,6 +78,13 @@ public class SimplePlayerControls : PortalTraveller
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
+    }
+    private void returnToMenu()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 
     void HandleMovement()

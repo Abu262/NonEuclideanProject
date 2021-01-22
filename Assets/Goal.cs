@@ -50,7 +50,10 @@ public class Goal : MonoBehaviour
     {
         if (SM.CoinCount >= SM.LevelTotal)
         {
-
+            if (sceneIndex > PlayerPrefs.GetInt("furthestLevel"))
+            {
+                PlayerPrefs.SetInt("furthestLevel", sceneIndex);
+            }
             SceneManager.LoadScene(sceneIndex);
         }
     }

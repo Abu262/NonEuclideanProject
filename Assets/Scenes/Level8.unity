@@ -20,7 +20,7 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientSkyColor: {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: d5089d2f17810a740bb84bedf4e5f9fd, type: 2}
+  m_LightingDataAsset: {fileID: 112000000, guid: cff4727937ed62846aadf00c054790f0, type: 2}
   m_LightingSettings: {fileID: 1418755813}
 --- !u!196 &4
 NavMeshSettings:
@@ -7107,16 +7107,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2195f0e4ad2a0a4493071c44c122713, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AM: {fileID: 0}
   Dir: -2
+  colorblindMode: 0
+  materialsCB: []
+  VolumeScale: 10
+  MouseScale: 5
+  startID: 1
   CoinCount: 0
+  levelProgress: 0
   DisplayCounter: {fileID: 1173266895}
   LevelTotal: 3
   GravityDir: {x: 0, y: 0, z: 0, w: 0}
   defaultVel: {x: 0, y: 0, z: 0}
   realVel: {x: 0, y: 0, z: 0}
   initialGrav: {x: 0, y: 0, z: 0}
-  AS: {fileID: 386290540}
-  BGM: {fileID: 1249014233}
 --- !u!4 &386290542
 Transform:
   m_ObjectHideFlags: 0
